@@ -146,7 +146,7 @@ Reader::Cache::~Cache()
  ************************************************/
 const QByteArray Reader::Cache::getStream(PDF::ObjNum objNum, PDF::GenNum genNum) const
 {
-    return mStreams.value(objNum << 32 + genNum);
+    return mStreams.value((quint64(objNum) << 32) + genNum);
 }
 
 
@@ -155,7 +155,7 @@ const QByteArray Reader::Cache::getStream(PDF::ObjNum objNum, PDF::GenNum genNum
  ************************************************/
 void Reader::Cache::setStream(ObjNum objNum, GenNum genNum, QByteArray stream)
 {
-    mStreams.insert(objNum << 32 + genNum, stream);
+    mStreams.insert((quint64(objNum) << 32) + genNum, stream);
 }
 
 
